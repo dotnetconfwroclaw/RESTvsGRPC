@@ -14,13 +14,15 @@ namespace RESTvsGRPC
 
         public GRPCClient()
         {
-            channel = GrpcChannel.ForAddress("localhost:5006");
+            channel = GrpcChannel.ForAddress("http://localhost:5006");
             client = new MeteoriteLandingsServiceClient(channel);
         }
 
         public async Task<string> GetSmallPayloadAsync()
         {
-            return (await client.GetVersionAsync(new EmptyRequest())).ApiVersion;
+            var response = await client.GetVersionAsync(new EmptyRequest());
+
+            return response.ApiVersion;
         }
 
         public async Task<List<MeteoriteLanding>> StreamLargePayloadAsync()
