@@ -16,7 +16,7 @@ namespace RESTvsGRPC
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            return await client.GetStringAsync("http://localhost:5000/api/MeteoriteLandings");
+            return await client.GetStringAsync("http://localhost:51521/api/MeteoriteLandings");
         }
 
         public async Task<List<MeteoriteLanding>> GetLargePayloadAsync()
@@ -24,7 +24,7 @@ namespace RESTvsGRPC
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string meteoriteLandingsString = await client.GetStringAsync("http://localhost:5000/api/MeteoriteLandings/LargePayload");
+            string meteoriteLandingsString = await client.GetStringAsync("http://localhost:51521/api/MeteoriteLandings/LargePayload");
 
             return JsonConvert.DeserializeObject<List<MeteoriteLanding>>(meteoriteLandingsString);
         }
@@ -34,7 +34,7 @@ namespace RESTvsGRPC
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var response = await client.PostAsJsonAsync("http://localhost:5000/api/MeteoriteLandings/LargePayload", meteoriteLandings);
+            var response = await client.PostAsJsonAsync("http://localhost:51521/api/MeteoriteLandings/LargePayload", meteoriteLandings);
 
             return await response.Content.ReadAsStringAsync();
         }
